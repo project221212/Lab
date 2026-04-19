@@ -1,0 +1,145 @@
+<div class="space-y-6">
+  <!-- Header & Actions -->
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Dashboard Overview</h1>
+      <p class="text-sm text-slate-500 mt-1">Here's what's happening in your laboratory today.</p>
+    </div>
+    <div class="flex space-x-3">
+      <button class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 shadow-sm text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-slate-50 focus:outline-none transition-colors">
+        Export Report
+      </button>
+      <button class="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-colors">
+        <lucide-icon [img]="Plus" class="mr-2" size="16"></lucide-icon>
+        New Patient
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div *ngFor="let stat of stats" class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center {{ stat.bg }}">
+          <lucide-icon [img]="stat.icon" class="{{ stat.color }}" size="24"></lucide-icon>
+        </div>
+        <div class="flex items-center space-x-1 text-sm font-medium" [ngClass]="stat.isUp ? 'text-emerald-600' : 'text-red-600'">
+          <lucide-icon [img]="stat.isUp ? ArrowUpRight : ArrowDownRight" size="16"></lucide-icon>
+          <span>{{ stat.trend }}</span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h3 class="text-3xl font-bold text-slate-900">{{ stat.value }}</h3>
+        <p class="text-sm font-medium text-slate-500 mt-1">{{ stat.label }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Chart Section -->
+    <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-base font-bold text-slate-900">Revenue Analytics</h2>
+        <select class="text-sm border-slate-200 rounded-lg text-slate-600 focus:ring-blue-500 focus:border-blue-500">
+          <option>This Week</option>
+          <option>This Month</option>
+          <option>This Year</option>
+        </select>
+      </div>
+      <div class="h-72 w-full">
+        <canvas #revenueChart></canvas>
+      </div>
+    </div>
+
+    <!-- Recent Activity / Tests -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-base font-bold text-slate-900">Quick Actions</h2>
+      </div>
+      <div class="space-y-3 flex-1">
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <lucide-icon [img]="Plus" size="20"></lucide-icon>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-bold text-slate-900">Register Patient</p>
+            <p class="text-xs text-slate-500">Add new patient details</p>
+          </div>
+        </button>
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-purple-500 hover:bg-purple-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+            <lucide-icon [img]="TestTube2" size="20"></lucide-icon>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-bold text-slate-900">Enter Results</p>
+            <p class="text-xs text-slate-500">Update lab test values</p>
+          </div>
+        </button>
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <lucide-icon [img]="IndianRupee" size="20"></lucide-icon>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-bold text-slate-900">Generate Bill</p>
+            <p class="text-xs text-slate-500">Create new invoice</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Patients Table -->
+  <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between">
+      <h2 class="text-base font-bold text-slate-900">Recent Patients</h2>
+      <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View All</a>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-slate-200">
+        <thead class="bg-slate-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Patient Info</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Test Name</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Time</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+            <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-slate-200">
+          <tr *ngFor="let patient of recentPatients" class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xs">
+                  {{ patient.name.charAt(0) }}
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-slate-900">{{ patient.name }}</p>
+                  <p class="text-xs text-slate-500">{{ patient.id }} • {{ patient.age }} yrs • {{ patient.gender }}</p>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="text-sm text-slate-900">{{ patient.test }}</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="text-sm text-slate-500">{{ patient.time }}</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-medium rounded-full"
+                    [ngClass]="{
+                      'bg-emerald-100 text-emerald-800': patient.status === 'Completed',
+                      'bg-orange-100 text-orange-800': patient.status === 'Pending',
+                      'bg-blue-100 text-blue-800': patient.status === 'Processing'
+                    }">
+                {{ patient.status }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <button class="text-blue-600 hover:text-blue-900 font-medium">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

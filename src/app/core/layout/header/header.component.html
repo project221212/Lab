@@ -1,0 +1,59 @@
+<header class="bg-white border-b border-slate-200">
+  <div class="px-6 mx-auto w-full">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo Area -->
+      <div class="flex items-center">
+        <lucide-icon [img]="TestTubes" class="text-blue-600 mr-2" size="24"></lucide-icon>
+        <span class="text-xl font-bold text-slate-800 tracking-tight mr-8 hidden md:block">LabMaster</span>
+        
+        <!-- Search -->
+        <div class="hidden sm:flex items-center max-w-sm w-full">
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
+            </div>
+            <input type="text" 
+                   class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2" 
+                   placeholder="Search patient or test...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <button class="relative text-slate-500 hover:text-blue-600 transition-colors">
+          <lucide-icon [img]="Bell" size="20"></lucide-icon>
+          <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+        </button>
+        
+        <div class="flex items-center space-x-3 border-l border-slate-200 pl-4 sm:pl-6">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            <lucide-icon [img]="User" size="18"></lucide-icon>
+          </div>
+          <div class="hidden md:block text-left">
+            <div class="text-sm font-semibold text-slate-800">Admin User</div>
+            <div class="text-xs text-slate-500">Administrator</div>
+          </div>
+        </div>
+
+        <button routerLink="/login" class="text-slate-500 hover:text-red-600 transition-colors hidden sm:block ml-2" title="Logout">
+          <lucide-icon [img]="LogOut" size="20"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Navigation Menu (Bottom Header) -->
+  <div class="px-6 bg-slate-50 border-t border-slate-200 overflow-x-auto">
+    <nav class="flex space-x-1 sm:space-x-6 py-2">
+      <a *ngFor="let item of navItems" 
+         [routerLink]="item.route" 
+         routerLinkActive="bg-blue-100 text-blue-700 shadow-sm border-blue-200"
+         [routerLinkActiveOptions]="{exact: false}"
+         class="flex items-center px-4 py-2 rounded-lg text-slate-600 font-medium hover:bg-white hover:text-blue-600 transition-colors whitespace-nowrap border border-transparent">
+        <lucide-icon [img]="item.icon" class="mr-2" size="18"></lucide-icon>
+        {{ item.label }}
+      </a>
+    </nav>
+  </div>
+</header>

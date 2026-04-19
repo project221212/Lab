@@ -1,0 +1,98 @@
+<div class="space-y-6">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Patient Registration</h1>
+      <p class="text-sm text-slate-500 mt-1">Add a new patient to the diagnostic center.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Form Area -->
+    <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center">
+        <lucide-icon [img]="UserPlus" class="text-blue-600 mr-2" size="20"></lucide-icon>
+        <h2 class="text-base font-bold text-slate-900">Patient Information</h2>
+      </div>
+      
+      <form class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Auto Generated ID -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Patient ID</label>
+            <input type="text" disabled [value]="generatedId" class="w-full bg-slate-100 border border-slate-200 text-slate-600 font-mono text-sm rounded-lg p-2.5 cursor-not-allowed">
+          </div>
+
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+            <input type="text" placeholder="e.g. Rahul Sharma" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+          </div>
+
+          <!-- Age & Gender -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Age <span class="text-red-500">*</span></label>
+              <input type="number" placeholder="Years" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Gender <span class="text-red-500">*</span></label>
+              <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                <option value="">Select</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Mobile Number <span class="text-red-500">*</span></label>
+            <input type="tel" placeholder="+91" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+          </div>
+
+          <!-- Referred By -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Referred Doctor</label>
+            <input type="text" placeholder="Dr. Name" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+          </div>
+
+          <!-- Address -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-slate-700 mb-1">Address</label>
+            <textarea rows="3" placeholder="Enter complete address" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"></textarea>
+          </div>
+
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-slate-200 flex justify-end space-x-3">
+          <button type="button" class="px-5 py-2.5 border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 font-medium rounded-lg text-sm transition-colors flex items-center">
+            <lucide-icon [img]="X" class="mr-2" size="16"></lucide-icon>
+            Cancel
+          </button>
+          <button type="button" class="px-5 py-2.5 border border-transparent text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm transition-colors flex items-center shadow-sm">
+            <lucide-icon [img]="Save" class="mr-2" size="16"></lucide-icon>
+            Save Patient
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right Sidebar (Visit History / Context) -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden h-fit">
+      <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center">
+        <lucide-icon [img]="History" class="text-purple-600 mr-2" size="20"></lucide-icon>
+        <h2 class="text-base font-bold text-slate-900">Visit History</h2>
+      </div>
+      <div class="p-6 text-center text-slate-500 flex flex-col items-center justify-center min-h-[300px]">
+        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+          <lucide-icon [img]="History" class="text-slate-400" size="24"></lucide-icon>
+        </div>
+        <p class="text-sm font-medium">No history available.</p>
+        <p class="text-xs mt-1">This is a new patient registration. Visit history will appear here for returning patients.</p>
+      </div>
+    </div>
+  </div>
+</div>
