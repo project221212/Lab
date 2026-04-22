@@ -7,6 +7,7 @@ import { LucideAngularModule, Search, Plus, Edit, Trash2, Filter } from 'lucide-
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './test-master.component.html',
+  styleUrl: './test-master.component.scss',
 })
 export class TestMasterComponent {
   readonly Search = Search;

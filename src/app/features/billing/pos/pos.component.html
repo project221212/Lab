@@ -20,21 +20,21 @@
       <!-- Select Patient -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
         <h2 class="text-sm font-bold text-slate-900 mb-4 flex items-center">
-          <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mr-2 text-xs">1</span> 
+          <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center mr-2 text-xs">1</span> 
           Patient Details
         </h2>
         <div class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
           </div>
-          <input type="text" value="PT-1042 - Rahul Sharma (+91 9876543210)" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 font-medium" placeholder="Search patient by ID, Name or Mobile...">
+          <input type="text" value="PT-1042 - Rahul Sharma (+91 9876543210)" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full pl-10 p-2.5 font-medium" placeholder="Search patient by ID, Name or Mobile...">
         </div>
       </div>
 
       <!-- Add Tests -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
         <h2 class="text-sm font-bold text-slate-900 mb-4 flex items-center">
-          <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mr-2 text-xs">2</span> 
+          <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center mr-2 text-xs">2</span> 
           Add Tests
         </h2>
         <div class="flex space-x-2 mb-6">
@@ -42,9 +42,9 @@
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
             </div>
-            <input type="text" class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search test name or code...">
+            <input type="text" class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full pl-10 p-2.5" placeholder="Search test name or code...">
           </div>
-          <button class="px-4 py-2.5 bg-blue-50 text-blue-700 font-medium rounded-lg text-sm hover:bg-blue-100 transition-colors border border-blue-200">
+          <button class="px-4 py-2.5 bg-sky-50 text-sky-800 font-medium rounded-lg text-sm hover:bg-sky-100 transition-colors border border-sky-200">
             Add
           </button>
         </div>
@@ -88,7 +88,7 @@
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm h-fit sticky top-6">
       <div class="p-5 border-b border-slate-200">
         <h2 class="text-lg font-bold text-slate-900 flex items-center">
-          <lucide-icon [img]="IndianRupee" class="text-emerald-600 mr-2" size="20"></lucide-icon>
+          <lucide-icon [img]="IndianRupee" class="text-teal-600 mr-2" size="20"></lucide-icon>
           Bill Summary
         </h2>
       </div>
@@ -102,7 +102,7 @@
           </div>
           <div class="flex justify-between items-center">
             <span class="text-slate-500">Discount (₹)</span>
-            <input type="number" [value]="discount" class="w-24 text-right border border-slate-300 rounded p-1 text-sm focus:ring-blue-500 focus:border-blue-500">
+            <input type="number" [value]="discount" class="w-24 text-right border border-slate-300 rounded p-1 text-sm focus:ring-sky-600 focus:border-sky-600">
           </div>
           <div class="flex justify-between items-center">
             <span class="text-slate-500">GST (18%)</span>
@@ -112,16 +112,16 @@
 
         <div class="flex justify-between items-center pt-2">
           <span class="text-base font-bold text-slate-900">Net Payable</span>
-          <span class="text-2xl font-bold text-emerald-600">₹{{ total }}</span>
+          <span class="text-2xl font-bold text-teal-600">₹{{ total }}</span>
         </div>
 
         <!-- Payment Mode -->
         <div class="pt-4 space-y-2">
           <label class="block text-xs font-medium text-slate-700">Payment Mode</label>
           <div class="grid grid-cols-2 gap-2">
-            <label class="border border-blue-500 bg-blue-50 flex items-center justify-center p-2 rounded-lg cursor-pointer">
+            <label class="border border-sky-600 bg-sky-50 flex items-center justify-center p-2 rounded-lg cursor-pointer">
               <input type="radio" name="paymentMode" value="cash" checked class="hidden">
-              <span class="text-sm font-medium text-blue-700">Cash</span>
+              <span class="text-sm font-medium text-sky-800">Cash</span>
             </label>
             <label class="border border-slate-200 flex items-center justify-center p-2 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="paymentMode" value="card" class="hidden">
@@ -132,7 +132,7 @@
 
         <!-- Actions -->
         <div class="pt-6 space-y-3">
-          <button class="w-full flex items-center justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
+          <button class="w-full flex items-center justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 transition-colors">
             <lucide-icon [img]="IndianRupee" class="mr-2" size="16"></lucide-icon>
             Complete Payment
           </button>

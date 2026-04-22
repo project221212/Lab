@@ -10,9 +10,9 @@
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
         </div>
-        <input type="text" class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search patients...">
+        <input type="text" class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full pl-10 p-2.5" placeholder="Search patients...">
       </div>
-      <button routerLink="/patients/new" class="inline-flex items-center justify-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-colors whitespace-nowrap">
+      <button routerLink="/patients/new" class="inline-flex items-center justify-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-sky-700 hover:bg-sky-800 focus:outline-none transition-colors whitespace-nowrap">
         <lucide-icon [img]="Plus" class="mr-2" size="16"></lucide-icon>
         New Patient
       </button>
@@ -36,7 +36,7 @@
           <tr *ngFor="let patient of patients" class="hover:bg-slate-50 transition-colors">
             <td class="px-6 py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm">
+                <div class="h-10 w-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-800 font-bold text-sm">
                   {{ patient.name.charAt(0) }}
                 </div>
                 <div class="ml-4">
@@ -58,10 +58,10 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <div class="flex items-center justify-end space-x-2">
-                <button class="text-slate-400 hover:text-blue-600 transition-colors p-1" title="View History">
+                <button class="text-slate-400 hover:text-sky-700 transition-colors p-1" title="View History">
                   <lucide-icon [img]="FileText" size="18"></lucide-icon>
                 </button>
-                <button class="text-slate-400 hover:text-blue-600 transition-colors p-1" title="Edit Patient">
+                <button class="text-slate-400 hover:text-sky-700 transition-colors p-1" title="Edit Patient">
                   <lucide-icon [img]="Edit" size="18"></lucide-icon>
                 </button>
                 <button class="text-slate-400 hover:text-slate-600 transition-colors p-1">
@@ -87,7 +87,7 @@
             <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50">
               Previous
             </button>
-            <button class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-blue-50 text-sm font-medium text-blue-600">
+            <button class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-sky-50 text-sm font-medium text-sky-700">
               1
             </button>
             <button class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">

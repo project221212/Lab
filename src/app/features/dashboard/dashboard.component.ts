@@ -8,6 +8,7 @@ import Chart from 'chart.js/auto';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements AfterViewInit {
   readonly Users = Users;
@@ -21,10 +22,10 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('revenueChart') revenueChart!: ElementRef;
 
   stats = [
-    { label: 'Total Patients', value: '12,450', trend: '+12.5%', isUp: true, icon: Users, color: 'text-blue-600', bg: 'bg-blue-100' },
-    { label: 'Today\'s Tests', value: '145', trend: '+5.2%', isUp: true, icon: TestTube2, color: 'text-purple-600', bg: 'bg-purple-100' },
+    { label: 'Total Patients', value: '12,450', trend: '+12.5%', isUp: true, icon: Users, color: 'text-sky-700', bg: 'bg-sky-100' },
+    { label: 'Today\'s Tests', value: '145', trend: '+5.2%', isUp: true, icon: TestTube2, color: 'text-indigo-600', bg: 'bg-indigo-100' },
     { label: 'Pending Reports', value: '28', trend: '-2.4%', isUp: false, icon: FileClock, color: 'text-orange-600', bg: 'bg-orange-100' },
-    { label: 'Total Revenue', value: '₹45,230', trend: '+8.1%', isUp: true, icon: IndianRupee, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+    { label: 'Total Revenue', value: '₹45,230', trend: '+8.1%', isUp: true, icon: IndianRupee, color: 'text-teal-600', bg: 'bg-teal-100' },
   ];
 
   recentPatients = [

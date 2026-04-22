@@ -7,6 +7,7 @@ import { LucideAngularModule, UserPlus, Save, X, History } from 'lucide-angular'
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './patient-registration.component.html',
+  styleUrl: './patient-registration.component.scss',
 })
 export class PatientRegistrationComponent {
   readonly UserPlus = UserPlus;

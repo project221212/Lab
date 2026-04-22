@@ -8,6 +8,7 @@ import { LucideAngularModule, LayoutDashboard, Users, TestTubes, Receipt, FileTe
   standalone: true,
   imports: [CommonModule, RouterModule, LucideAngularModule],
   templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   readonly LayoutDashboard = LayoutDashboard;

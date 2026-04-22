@@ -9,7 +9,7 @@
       <button class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 shadow-sm text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-slate-50 focus:outline-none transition-colors">
         Export Report
       </button>
-      <button class="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-colors">
+      <button class="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-sky-700 hover:bg-sky-800 focus:outline-none transition-colors">
         <lucide-icon [img]="Plus" class="mr-2" size="16"></lucide-icon>
         New Patient
       </button>
@@ -23,7 +23,7 @@
         <div class="w-12 h-12 rounded-lg flex items-center justify-center {{ stat.bg }}">
           <lucide-icon [img]="stat.icon" class="{{ stat.color }}" size="24"></lucide-icon>
         </div>
-        <div class="flex items-center space-x-1 text-sm font-medium" [ngClass]="stat.isUp ? 'text-emerald-600' : 'text-red-600'">
+        <div class="flex items-center space-x-1 text-sm font-medium" [ngClass]="stat.isUp ? 'text-teal-600' : 'text-red-600'">
           <lucide-icon [img]="stat.isUp ? ArrowUpRight : ArrowDownRight" size="16"></lucide-icon>
           <span>{{ stat.trend }}</span>
         </div>
@@ -40,7 +40,7 @@
     <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-6">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-base font-bold text-slate-900">Revenue Analytics</h2>
-        <select class="text-sm border-slate-200 rounded-lg text-slate-600 focus:ring-blue-500 focus:border-blue-500">
+        <select class="text-sm border-slate-200 rounded-lg text-slate-600 focus:ring-sky-600 focus:border-sky-600">
           <option>This Week</option>
           <option>This Month</option>
           <option>This Year</option>
@@ -57,8 +57,8 @@
         <h2 class="text-base font-bold text-slate-900">Quick Actions</h2>
       </div>
       <div class="space-y-3 flex-1">
-        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
-          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-sky-600 hover:bg-sky-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 group-hover:bg-sky-700 group-hover:text-white transition-colors">
             <lucide-icon [img]="Plus" size="20"></lucide-icon>
           </div>
           <div class="ml-4">
@@ -66,8 +66,8 @@
             <p class="text-xs text-slate-500">Add new patient details</p>
           </div>
         </button>
-        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-purple-500 hover:bg-purple-50 transition-all text-left group">
-          <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-indigo-500 hover:bg-indigo-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
             <lucide-icon [img]="TestTube2" size="20"></lucide-icon>
           </div>
           <div class="ml-4">
@@ -75,8 +75,8 @@
             <p class="text-xs text-slate-500">Update lab test values</p>
           </div>
         </button>
-        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-all text-left group">
-          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+        <button class="w-full flex items-center p-4 border border-slate-200 rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all text-left group">
+          <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors">
             <lucide-icon [img]="IndianRupee" size="20"></lucide-icon>
           </div>
           <div class="ml-4">
@@ -92,7 +92,7 @@
   <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
     <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between">
       <h2 class="text-base font-bold text-slate-900">Recent Patients</h2>
-      <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View All</a>
+      <a href="#" class="text-sm font-medium text-sky-700 hover:text-sky-800">View All</a>
     </div>
     <div class="overflow-x-auto">
       <table class="min-w-full divide-y divide-slate-200">
@@ -127,15 +127,15 @@
             <td class="px-6 py-4 whitespace-nowrap">
               <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-medium rounded-full"
                     [ngClass]="{
-                      'bg-emerald-100 text-emerald-800': patient.status === 'Completed',
+                      'bg-teal-100 text-teal-800': patient.status === 'Completed',
                       'bg-orange-100 text-orange-800': patient.status === 'Pending',
-                      'bg-blue-100 text-blue-800': patient.status === 'Processing'
+                      'bg-sky-100 text-blue-800': patient.status === 'Processing'
                     }">
                 {{ patient.status }}
               </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-blue-600 hover:text-blue-900 font-medium">View</button>
+              <button class="text-sky-700 hover:text-sky-900 font-medium">View</button>
             </td>
           </tr>
         </tbody>

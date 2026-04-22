@@ -8,6 +8,7 @@ import { LucideAngularModule, Search, Plus, MoreVertical, Edit, FileText } from 
   standalone: true,
   imports: [CommonModule, RouterModule, LucideAngularModule],
   templateUrl: './patient-list.component.html',
+  styleUrl: './patient-list.component.scss',
 })
 export class PatientListComponent {
   readonly Search = Search;

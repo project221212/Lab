@@ -10,7 +10,7 @@
         <lucide-icon [img]="Filter" class="mr-2" size="16"></lucide-icon>
         Filter
       </button>
-      <button class="inline-flex items-center justify-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 focus:outline-none transition-colors">
+      <button class="inline-flex items-center justify-center px-4 py-2.5 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none transition-colors">
         <lucide-icon [img]="Plus" class="mr-2" size="16"></lucide-icon>
         Add New Test
       </button>
@@ -25,7 +25,7 @@
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
           </div>
-          <input type="text" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-2.5" placeholder="Search by test name, code or category...">
+          <input type="text" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5" placeholder="Search by test name, code or category...">
         </div>
       </div>
       <div class="overflow-x-auto">
@@ -50,13 +50,13 @@
                 <div class="text-xs text-slate-500 mt-0.5">{{ test.department }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <span class="inline-flex items-center px-2.5 py-1 text-sm font-semibold rounded-md bg-emerald-50 text-emerald-700">
+                <span class="inline-flex items-center px-2.5 py-1 text-sm font-semibold rounded-md bg-teal-50 text-teal-700">
                   ₹{{ test.price }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div class="flex items-center justify-end space-x-2">
-                  <button class="text-slate-400 hover:text-blue-600 transition-colors p-1" title="Edit">
+                  <button class="text-slate-400 hover:text-sky-700 transition-colors p-1" title="Edit">
                     <lucide-icon [img]="Edit" size="18"></lucide-icon>
                   </button>
                   <button class="text-slate-400 hover:text-red-600 transition-colors p-1" title="Delete">
@@ -82,11 +82,11 @@
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Test Name <span class="text-red-500">*</span></label>
-          <input type="text" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2">
+          <input type="text" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2">
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Category <span class="text-red-500">*</span></label>
-          <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2">
+          <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2">
             <option>Hematology</option>
             <option>Biochemistry</option>
             <option>Hormones</option>
@@ -95,7 +95,7 @@
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Department</label>
-          <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2">
+          <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2">
             <option>Pathology</option>
             <option>Endocrinology</option>
             <option>Radiology</option>
@@ -103,14 +103,14 @@
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Price (₹) <span class="text-red-500">*</span></label>
-          <input type="number" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2">
+          <input type="number" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2">
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Normal Range</label>
-          <textarea rows="2" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2"></textarea>
+          <textarea rows="2" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2"></textarea>
         </div>
         <div class="pt-2">
-          <button class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg text-sm transition-colors shadow-sm">
+          <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg text-sm transition-colors shadow-sm">
             Save Test Item
           </button>
         </div>

@@ -21,6 +21,7 @@ export const routes: Routes = [
       { path: 'tests', component: TestMasterComponent },
       { path: 'billing', component: PosComponent },
       { path: 'reports', component: ReportEntryComponent },
+      { path: 'masters/group-master', loadComponent: () => import('./features/masters/group-master/group-master.component').then(m => m.GroupMasterComponent) },
     ]
   },
   { path: '**', redirectTo: 'login' }

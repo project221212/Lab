@@ -17,10 +17,10 @@
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <lucide-icon [img]="Search" class="text-slate-400" size="18"></lucide-icon>
           </div>
-          <input type="text" value="INV-202604-089 (Rahul Sharma)" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 font-medium" placeholder="Search Invoice ID or Patient...">
+          <input type="text" value="INV-202604-089 (Rahul Sharma)" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full pl-10 p-2.5 font-medium" placeholder="Search Invoice ID or Patient...">
         </div>
         
-        <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm">
+        <div class="bg-sky-50 border border-blue-100 rounded-lg p-3 text-sm">
           <div class="grid grid-cols-2 gap-2">
             <div>
               <span class="text-slate-500 block text-xs">Patient Name</span>
@@ -46,7 +46,7 @@
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-5 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
           <div class="flex items-center">
-            <lucide-icon [img]="FlaskConical" class="text-purple-600 mr-2" size="20"></lucide-icon>
+            <lucide-icon [img]="FlaskConical" class="text-indigo-600 mr-2" size="20"></lucide-icon>
             <h2 class="text-base font-bold text-slate-900">Complete Blood Count (CBC)</h2>
           </div>
           <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Pending Entry</span>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-span-4 relative">
               <input type="text" [value]="param.value" 
-                     class="w-full bg-white border rounded-lg text-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                     class="w-full bg-white border rounded-lg text-sm p-2 focus:ring-sky-600 focus:border-sky-600"
                      [ngClass]="param.isAbnormal ? 'border-red-300 text-red-700 bg-red-50 font-bold' : 'border-slate-300 text-slate-900'">
             </div>
             <div class="col-span-3 text-xs text-slate-500 text-right">
@@ -70,12 +70,12 @@
 
           <div class="pt-4 border-t border-slate-200">
             <label class="block text-sm font-medium text-slate-700 mb-1">Doctor's Remarks</label>
-            <textarea rows="2" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2" placeholder="Any specific notes or clinical correlation..."></textarea>
+            <textarea rows="2" class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2" placeholder="Any specific notes or clinical correlation..."></textarea>
           </div>
           
           <div>
             <label class="block text-sm font-medium text-slate-700 mb-1">Verified By</label>
-            <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2">
+            <select class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2">
               <option>Dr. Anjali Verma (Pathologist)</option>
               <option>Dr. Rajesh Kumar (Biochemist)</option>
             </select>
@@ -83,11 +83,11 @@
         </div>
         
         <div class="px-5 py-4 bg-slate-50 border-t border-slate-200 flex space-x-3">
-          <button class="flex-1 flex items-center justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors">
+          <button class="flex-1 flex items-center justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-sky-700 hover:bg-sky-800 transition-colors">
             <lucide-icon [img]="Save" class="mr-2" size="16"></lucide-icon>
             Save Draft
           </button>
-          <button class="flex-1 flex items-center justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
+          <button class="flex-1 flex items-center justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors">
             <lucide-icon [img]="CheckCircle" class="mr-2" size="16"></lucide-icon>
             Verify & Approve
           </button>
@@ -101,10 +101,10 @@
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-sm font-bold text-slate-700">Live Report Preview</h3>
           <div class="flex space-x-2">
-            <button class="p-2 bg-white rounded shadow-sm text-slate-600 hover:text-blue-600">
+            <button class="p-2 bg-white rounded shadow-sm text-slate-600 hover:text-sky-700">
               <lucide-icon [img]="Printer" size="18"></lucide-icon>
             </button>
-            <button class="p-2 bg-white rounded shadow-sm text-slate-600 hover:text-blue-600">
+            <button class="p-2 bg-white rounded shadow-sm text-slate-600 hover:text-sky-700">
               <lucide-icon [img]="Download" size="18"></lucide-icon>
             </button>
           </div>
@@ -113,11 +113,11 @@
         <!-- The A4 PDF Sheet Mockup -->
         <div class="bg-white mx-auto w-full max-w-[800px] shadow-lg flex-1 rounded-sm flex flex-col">
           <!-- Lab Header -->
-          <div class="p-6 border-b-2 border-blue-800 flex justify-between items-center">
+          <div class="p-6 border-b-2 border-sky-800 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-              <div class="w-12 h-12 bg-blue-600 text-white flex items-center justify-center font-bold text-xl rounded-lg">LM</div>
+              <div class="w-12 h-12 bg-sky-700 text-white flex items-center justify-center font-bold text-xl rounded-lg">LM</div>
               <div>
-                <h1 class="text-2xl font-bold text-blue-900 m-0 tracking-tight">LabMaster Diagnostics</h1>
+                <h1 class="text-2xl font-bold text-sky-900 m-0 tracking-tight">LabMaster Diagnostics</h1>
                 <p class="text-[10px] text-slate-600 m-0">Accurate • Reliable • Fast</p>
               </div>
             </div>
@@ -185,7 +185,7 @@
             <div class="text-center">
               <div class="w-32 border-b border-slate-400 mb-2 h-10 flex items-end justify-center">
                 <!-- Signature Image Mockup -->
-                <span class="font-cursive text-blue-900 text-lg opacity-80" style="font-family: 'Brush Script MT', cursive;">Dr. T. Sharma</span>
+                <span class="font-cursive text-sky-900 text-lg opacity-80" style="font-family: 'Brush Script MT', cursive;">Dr. T. Sharma</span>
               </div>
               <p class="text-xs font-bold text-slate-800">Technician</p>
             </div>
@@ -195,7 +195,7 @@
             </div>
             <div class="text-center">
               <div class="w-32 border-b border-slate-400 mb-2 h-10 flex items-end justify-center">
-                <span class="font-cursive text-blue-900 text-lg opacity-80" style="font-family: 'Brush Script MT', cursive;">Dr. Anjali Verma</span>
+                <span class="font-cursive text-sky-900 text-lg opacity-80" style="font-family: 'Brush Script MT', cursive;">Dr. Anjali Verma</span>
               </div>
               <p class="text-xs font-bold text-slate-800">Dr. Anjali Verma</p>
               <p class="text-[10px] text-slate-500">MD Pathologist</p>

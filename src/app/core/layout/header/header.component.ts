@@ -8,6 +8,7 @@ import { LucideAngularModule, Bell, Search, User, TestTubes, LayoutDashboard, Us
   standalone: true,
   imports: [CommonModule, RouterModule, LucideAngularModule],
   templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   readonly Bell = Bell;
@@ -27,6 +28,7 @@ export class HeaderComponent {
     { label: 'Tests', route: '/tests', icon: TestTubes },
     { label: 'Billing', route: '/billing', icon: Receipt },
     { label: 'Reports', route: '/reports', icon: FileText },
+    { label: 'Group Master', route: '/masters/group-master', icon: Settings },
     { label: 'Settings', route: '/settings', icon: Settings },
   ];
 }

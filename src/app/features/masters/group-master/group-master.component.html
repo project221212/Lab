@@ -1,0 +1,252 @@
+<div class="space-y-4 max-w-[1600px] mx-auto pt-2">
+  <div class="flex flex-col lg:flex-row gap-6">
+    <!-- LEFT SIDE: ENTRY FORM (30% Width) -->
+    <div class="w-full lg:w-[30%]">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden sticky top-6">
+        <div class="px-5 py-4 border-b border-sky-200 bg-sky-100 flex items-center justify-between">
+          <div class="flex items-center">
+            <lucide-icon [img]="ListPlus" class="text-sky-700 mr-2" size="20"></lucide-icon>
+            <h2 class="text-base font-bold text-sky-900">{{ isEditMode ? 'Update Group' : 'Add New Group' }}</h2>
+          </div>
+        </div>
+
+        <form [formGroup]="groupForm" (ngSubmit)="onSubmit()" class="p-5 space-y-4">
+
+          <!-- Group Code -->
+          <div>
+            <label class="block text-sm font-bold text-slate-800 mb-1">Group Code</label>
+            <input type="text" formControlName="code"
+              class="w-full bg-slate-100 border border-slate-200 text-slate-600 text-sm rounded-lg p-2.5 cursor-not-allowed font-medium">
+          </div>
+
+          <!-- Group Name -->
+          <div>
+            <label class="block text-sm font-bold text-slate-800 mb-1">Group Name <span
+                class="text-red-500">*</span></label>
+            <input type="text" formControlName="name" placeholder="e.g. Pathology"
+              class="w-full bg-white border text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2.5 transition-colors"
+              [ngClass]="{'border-red-300 bg-red-50 focus:border-red-500 focus:ring-red-500': groupForm.get('name')?.invalid && groupForm.get('name')?.touched, 'border-slate-300': !(groupForm.get('name')?.invalid && groupForm.get('name')?.touched)}">
+            <div *ngIf="groupForm.get('name')?.invalid && groupForm.get('name')?.touched"
+              class="text-xs text-red-500 mt-1">
+              Group Name is required.
+            </div>
+          </div>
+
+          <!-- Short Name -->
+          <div>
+            <label class="block text-sm font-bold text-slate-800 mb-1">Short Name</label>
+            <input type="text" formControlName="shortName" placeholder="e.g. PATH"
+              class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2.5 uppercase transition-colors">
+          </div>
+
+          <!-- Display Order -->
+          <div>
+            <label class="block text-sm font-bold text-slate-800 mb-1">Display Order</label>
+            <input type="number" formControlName="displayOrder"
+              class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2.5 transition-colors">
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-sm font-bold text-slate-800 mb-1">Description</label>
+            <textarea formControlName="description" rows="3" placeholder="Enter group details..."
+              class="w-full bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 p-2.5 transition-colors"></textarea>
+          </div>
+
+          <!-- Status Toggle -->
+          <div class="flex items-center justify-between pt-2">
+            <label class="block text-sm font-bold text-slate-800">Status</label>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" formControlName="status" class="sr-only peer">
+              <div
+                class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sky-700">
+              </div>
+              <span class="ml-3 text-sm font-medium"
+                [ngClass]="groupForm.get('status')?.value ? 'text-sky-700' : 'text-slate-500'">
+                {{ groupForm.get('status')?.value ? 'Active' : 'Inactive' }}
+              </span>
+            </label>
+          </div>
+
+          <!-- Auto Fields (visible in Edit mode) -->
+          <div *ngIf="isEditMode" class="pt-4 border-t border-slate-200 mt-4">
+            <div class="grid grid-cols-2 gap-2 text-xs text-slate-500">
+              <div><span class="font-medium text-slate-700">Created:</span> Admin (18 Apr)</div>
+              <div><span class="font-medium text-slate-700">Updated:</span> You (Today)</div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-6 border-t border-slate-200 grid grid-cols-2 gap-3">
+            <button type="button" (click)="resetForm()"
+              class="flex items-center justify-center py-2.5 px-4 border border-slate-300 shadow-sm text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-slate-50 focus:outline-none transition-colors">
+              <lucide-icon [img]="isEditMode ? X : RefreshCw" class="mr-2" size="16"></lucide-icon>
+              {{ isEditMode ? 'Cancel' : 'Reset' }}
+            </button>
+            <button type="submit"
+              class="flex items-center justify-center py-2.5 px-4 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-sky-700 hover:bg-sky-800 focus:outline-none transition-colors">
+              <lucide-icon [img]="Save" class="mr-2" size="16"></lucide-icon>
+              {{ isEditMode ? 'Update' : 'Save' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: LISTING GRID (70% Width) -->
+    <div class="w-full lg:w-[70%]">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full">
+
+        <!-- Search & Filters -->
+        <div class="p-4 border-b border-sky-200 bg-sky-100">
+          <div class="flex items-center justify-between">
+            <!-- Left: Search Bar -->
+            <div class="relative w-full max-w-md">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <lucide-icon [img]="Search" class="text-slate-400" size="16"></lucide-icon>
+              </div>
+              <input type="text"
+                class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-sky-600 focus:border-sky-600 block w-full pl-9 p-2 transition-colors shadow-sm"
+                placeholder="Search by Code, Name or Description...">
+            </div>
+
+            <!-- Right: Dropdowns -->
+            <div class="flex items-center space-x-3 ml-4">
+              <!-- Rows Per Page -->
+              <div class="relative">
+                <select
+                  class="appearance-none bg-white border border-slate-300 text-sky-700 text-sm font-medium rounded-md focus:ring-sky-600 focus:border-sky-600 block px-3 py-1.5 pr-8 hover:bg-slate-50 cursor-pointer">
+                  <option>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-sky-700">
+                  <lucide-icon [img]="ChevronDown" size="14"></lucide-icon>
+                </div>
+              </div>
+
+              <!-- Export Dropdown -->
+              <div class="relative group">
+                <button
+                  class="inline-flex items-center px-3 py-1.5 border border-slate-300 text-sm font-medium rounded-md text-sky-700 bg-white hover:bg-slate-50 transition-colors">
+                  <lucide-icon [img]="Download" class="mr-1.5" size="14"></lucide-icon>
+                  <lucide-icon [img]="ChevronDown" size="14"></lucide-icon>
+                </button>
+                <div
+                  class="absolute right-0 mt-1 w-32 bg-white border border-slate-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+                  <div class="py-1">
+                    <button
+                      class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-sky-50 hover:text-sky-700">To
+                      Excel</button>
+                    <button
+                      class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-sky-50 hover:text-sky-700">To
+                      JSON</button>
+                    <button
+                      class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-sky-50 hover:text-sky-700">To
+                      CSV</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Grid -->
+        <div class="overflow-x-auto flex-1">
+          <table class="min-w-full divide-y divide-slate-200">
+            <thead class="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th scope="col"
+                  class="px-5 py-3 text-left text-xs font-bold text-slate-800 uppercase tracking-wider whitespace-nowrap w-20">Sr No.</th>
+                <th scope="col" class="px-5 py-3 text-left text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Group Details</th>
+                <th scope="col" class="px-5 py-3 text-center text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Order</th>
+                <th scope="col" class="px-5 py-3 text-center text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Status</th>
+                <th scope="col" class="px-5 py-3 text-right text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-slate-200">
+              <tr *ngFor="let group of groups; let i = index" class="hover:bg-slate-50 transition-colors">
+                <td class="px-5 py-4 whitespace-nowrap text-sm text-slate-500 font-medium">{{ i + 1 }}</td>
+
+                <td class="px-5 py-4">
+                  <div class="text-sm font-bold text-slate-900">{{ group.name }} <span
+                      class="font-normal text-slate-500 text-xs ml-1" *ngIf="group.shortName">({{ group.shortName
+                      }})</span></div>
+                  <div class="text-xs text-slate-500 mt-0.5 truncate max-w-[200px]">{{ group.description }}</div>
+                </td>
+                <td class="px-5 py-4 whitespace-nowrap text-center text-sm font-medium text-slate-700">
+                  {{ group.displayOrder }}
+                </td>
+                <td class="px-5 py-4 whitespace-nowrap text-center">
+                  <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full"
+                    [ngClass]="group.status === 'Active' ? 'bg-teal-50 text-teal-700 border border-teal-200' : 'bg-slate-100 text-slate-600 border border-slate-200'">
+                    {{ group.status }}
+                  </span>
+                </td>
+                <td class="px-5 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex items-center justify-end space-x-2">
+                    <button (click)="editGroup(group)"
+                      class="text-slate-400 hover:text-sky-700 bg-white hover:bg-sky-50 border border-transparent hover:border-sky-200 rounded p-1.5 transition-all"
+                      title="Edit">
+                      <lucide-icon [img]="Edit" size="16"></lucide-icon>
+                    </button>
+                    <button (click)="deleteGroup(group.id)"
+                      class="text-slate-400 hover:text-red-600 bg-white hover:bg-red-50 border border-transparent hover:border-red-200 rounded p-1.5 transition-all"
+                      title="Delete">
+                      <lucide-icon [img]="Trash2" size="16"></lucide-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="groups.length === 0" class="p-8 text-center text-slate-500">
+            <p class="text-sm">No groups found. Add a new group using the form.</p>
+          </div>
+        </div>
+
+        <!-- Pagination Footer -->
+        <div class="bg-white px-5 py-3 border-t border-slate-200 flex items-center justify-between">
+          <div class="text-sm font-medium text-slate-500">
+            {{ groups.length }} total
+          </div>
+          <div>
+            <nav class="relative z-0 inline-flex items-center space-x-1">
+              <button class="p-1 rounded text-slate-400 hover:text-sky-700 hover:bg-sky-50 disabled:opacity-50">
+                <lucide-icon [img]="ChevronsLeft" size="16"></lucide-icon>
+              </button>
+              <button class="p-1 rounded text-slate-400 hover:text-sky-700 hover:bg-sky-50 disabled:opacity-50">
+                <lucide-icon [img]="ChevronLeft" size="16"></lucide-icon>
+              </button>
+
+              <button
+                class="w-7 h-7 rounded bg-sky-700 text-white text-xs font-bold flex items-center justify-center">1</button>
+              <button
+                class="w-7 h-7 rounded text-slate-600 hover:bg-slate-100 text-xs font-bold flex items-center justify-center">2</button>
+              <button
+                class="w-7 h-7 rounded text-slate-600 hover:bg-slate-100 text-xs font-bold flex items-center justify-center">3</button>
+              <button
+                class="w-7 h-7 rounded text-slate-600 hover:bg-slate-100 text-xs font-bold flex items-center justify-center">4</button>
+              <button
+                class="w-7 h-7 rounded text-slate-600 hover:bg-slate-100 text-xs font-bold flex items-center justify-center">5</button>
+
+              <button class="p-1 rounded text-slate-400 hover:text-sky-700 hover:bg-sky-50 disabled:opacity-50">
+                <lucide-icon [img]="ChevronRight" size="16"></lucide-icon>
+              </button>
+              <button class="p-1 rounded text-slate-400 hover:text-sky-700 hover:bg-sky-50 disabled:opacity-50">
+                <lucide-icon [img]="ChevronsRight" size="16"></lucide-icon>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

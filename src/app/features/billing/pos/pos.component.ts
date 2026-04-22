@@ -7,6 +7,7 @@ import { LucideAngularModule, Search, Trash2, IndianRupee, Printer, FileCheck } 
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './pos.component.html',
+  styleUrl: './pos.component.scss',
 })
 export class PosComponent {
   readonly Search = Search;

@@ -7,6 +7,7 @@ import { LucideAngularModule, Search, FileText, CheckCircle, Printer, Download, 
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './report-entry.component.html',
+  styleUrl: './report-entry.component.scss',
 })
 export class ReportEntryComponent {
   readonly Search = Search;
