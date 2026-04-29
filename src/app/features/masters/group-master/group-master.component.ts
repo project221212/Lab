@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { LucideAngularModule, Search, Plus, Save, Edit, Trash2, X, RefreshCw, Download, Filter, ToggleLeft, ToggleRight, ListPlus, ChevronDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-angular';
+import { LucideAngularModule, Search, Plus, Save, Edit, Trash2, X, RefreshCw, Download, Filter, ToggleLeft, ToggleRight, ListPlus, ChevronDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, CheckCircle, AlertCircle } from 'lucide-angular';
+
+import { GroupMasterService } from './group-master.service';
 
 @Component({
   selector: 'app-group-master',
@@ -28,93 +30,157 @@ export class GroupMasterComponent implements OnInit {
   readonly ChevronRight = ChevronRight;
   readonly ChevronsLeft = ChevronsLeft;
   readonly ChevronsRight = ChevronsRight;
+  readonly CheckCircle = CheckCircle;
+  readonly AlertCircle = AlertCircle;
 
   groupForm!: FormGroup;
   isEditMode = false;
-  
-  // Mock Data
-  groups = [
-    { id: 1, code: 'GRP001', name: 'Pathology', shortName: 'PATH', description: 'General pathology testing', displayOrder: 1, status: 'Active', createdDate: '2026-04-18' },
-    { id: 2, code: 'GRP002', name: 'Biochemistry', shortName: 'BIO', description: 'Biochemical analysis and profiling', displayOrder: 2, status: 'Active', createdDate: '2026-04-18' },
-    { id: 3, code: 'GRP003', name: 'Microbiology', shortName: 'MICRO', description: 'Microbiological cultures and tests', displayOrder: 3, status: 'Inactive', createdDate: '2026-04-19' },
-    { id: 4, code: 'GRP004', name: 'Hematology', shortName: 'HEMA', description: 'Blood related tests and counts', displayOrder: 4, status: 'Active', createdDate: '2026-04-19' },
-    { id: 5, code: 'GRP005', name: 'Serology', shortName: 'SERO', description: 'Serum based investigations', displayOrder: 5, status: 'Active', createdDate: '2026-04-20' },
-  ];
+  apiMessage = '';
+  isApiSuccess = true;
 
-  constructor(private fb: FormBuilder) {}
+  // Mock Data replaced by API data
+  groups: any[] = [];
+
+  constructor(private fb: FormBuilder, private groupService: GroupMasterService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.loadGroups();
+  }
+
+  loadGroups(): void {
+
+    this.groupService.getAll().subscribe({
+      next: (res) => {
+        const data = res?.data || res?.Data || res?.gridData || [];
+        this.groups = data.map((item: any) => ({
+          id: item.gCode || item.GCode || item.id,
+          name: item.groupName || item.GroupName || item.name,
+          shortName: item.shortName || item.ShortName || item.shortName,
+          description: item.description || item.Description || item.description,
+          displayOrder: item.displayOrder || item.DisplayOrder || item.displayOrder,
+          IsDeleted: (item.isDeleted === 1 || item.isDeleted === true || item.IsDeleted === 1 || item.IsDeleted === true) ? '1' : '0',
+          IsDeletedText: (item.isDeleted === 1 || item.isDeleted === true || item.IsDeleted === 1 || item.IsDeleted === true) ? 'InActive' : 'Active',
+          createdDate: item.createdDate || item.CreatedDate || ''
+        }));
+      },
+      error: (err) => console.error(err)
+    });
   }
 
   initForm(): void {
     this.groupForm = this.fb.group({
       id: [null],
-      code: [{ value: this.generateCode(), disabled: true }, Validators.required],
       name: ['', [Validators.required, Validators.minLength(2)]],
       shortName: [''],
       description: [''],
       displayOrder: [this.groups.length + 1, Validators.min(1)],
-      status: [true] // true for Active, false for Inactive
+      IsDeleted: [false] // false means Active, true means InActive
     });
   }
 
-  generateCode(): string {
-    return 'GRP00' + (this.groups.length + 1);
-  }
 
   onSubmit(): void {
-    if (this.groupForm.valid) {
-      // In a real app, API call goes here
-      const formValue = this.groupForm.getRawValue();
-      const newGroup = {
-        ...formValue,
-        status: formValue.status ? 'Active' : 'Inactive',
-        createdDate: new Date().toISOString().split('T')[0]
-      };
+    debugger
 
-      if (this.isEditMode) {
-        const index = this.groups.findIndex(g => g.id === newGroup.id);
-        if (index !== -1) {
-          this.groups[index] = newGroup;
-        }
-      } else {
-        newGroup.id = this.groups.length + 1;
-        this.groups.unshift(newGroup);
+    // Add debugging to see which fields are invalid
+    Object.keys(this.groupForm.controls).forEach(key => {
+      const controlErrors = this.groupForm.get(key)?.errors;
+      if (controlErrors != null) {
+        console.log('Invalid field:', key, controlErrors);
       }
-      
-      this.resetForm();
+    });
+
+    if (this.groupForm.valid) {
+      const formValue = this.groupForm.getRawValue();
+      const model = {
+        gCode: this.isEditMode ? formValue.id : null,
+        groupName: formValue.name,
+        shortName: formValue.shortName,
+        description: formValue.description,
+        displayOrder: formValue.displayOrder,
+        IsDeleted: formValue.IsDeleted ? true : false,
+        //mUser: 'Admin' // fallback user
+      };
+      debugger
+      if (this.isEditMode) {
+        this.groupService.update(model).subscribe({
+          next: (res) => {
+            this.showApiMessage(res?.message || res?.Message || 'Updated successfully', true);
+            this.loadGroups();
+            this.resetForm();
+          },
+          error: (err) => {
+            console.error(err);
+            this.showApiMessage('Failed to update record', false);
+          }
+        });
+      } else {
+        this.groupService.insert(model).subscribe({
+          next: (res) => {
+            this.showApiMessage(res?.message || res?.Message || 'Saved successfully', true);
+            this.loadGroups();
+            this.resetForm();
+          },
+          error: (err) => {
+            console.error(err);
+            this.showApiMessage('Failed to save record', false);
+          }
+        });
+      }
     } else {
       this.groupForm.markAllAsTouched();
     }
   }
 
   editGroup(group: any): void {
-    this.isEditMode = true;
-    this.groupForm.patchValue({
-      id: group.id,
-      code: group.code,
-      name: group.name,
-      shortName: group.shortName,
-      description: group.description,
-      displayOrder: group.displayOrder,
-      status: group.status === 'Active'
+
+    this.groupService.getById(group.id).subscribe({
+      next: (res) => {
+        const data = res?.data || res?.Data || res?.gridData || res;
+        this.isEditMode = true;
+        this.groupForm.patchValue({
+          id: data.gCode || data.GCode || group.id,
+          name: data.groupName || data.GroupName || group.name,
+          shortName: data.shortName || data.ShortName || group.shortName,
+          description: data.description || data.Description || group.description,
+          displayOrder: data.displayOrder || data.DisplayOrder || group.displayOrder || 1,
+          IsDeleted: (data.isDeleted === 1 || data.isDeleted === true || data.IsDeleted === 1 || data.IsDeleted === true) ? true : false
+        });
+      },
+      error: (err) => console.error(err)
     });
   }
 
   deleteGroup(id: number): void {
     if (confirm('Are you sure you want to delete this group?')) {
-      this.groups = this.groups.filter(g => g.id !== id);
+      this.groupService.delete(id).subscribe({
+        next: (res) => {
+          this.showApiMessage(res?.message || res?.Message || 'Deleted successfully', true);
+          this.loadGroups();
+        },
+        error: (err) => {
+          console.error(err);
+          this.showApiMessage('Failed to delete record', false);
+        }
+      });
     }
+  }
+
+  showApiMessage(message: string, isSuccess: boolean): void {
+    this.apiMessage = message;
+    this.isApiSuccess = isSuccess;
+    setTimeout(() => {
+      this.apiMessage = '';
+    }, 3000);
   }
 
   resetForm(): void {
     this.isEditMode = false;
     this.groupForm.reset({
       id: null,
-      code: this.generateCode(),
       displayOrder: this.groups.length + 1,
-      status: true
+      IsDeleted: false
     });
   }
 }
